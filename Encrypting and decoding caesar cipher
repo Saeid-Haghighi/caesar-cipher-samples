@@ -1,0 +1,23 @@
+#Encrypting and dectryping ciphers:
+letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+cipher = {letters[i]: letters[(i - 3) % len(letters)] for i in range(len(letters))}
+
+
+def transform_message(message, cipher):
+    tmsg = ''
+    for c in message:
+        tmsg = tmsg + cipher.get(c, c)
+    return tmsg
+
+
+test = "I come to bury Caesar, not to praise him."
+
+transform_message(test, cipher)
+print(transform_message(test, cipher))
+
+# Create variable decoder to decrypt test message to original message
+decoder = {letters[i]: letters[(i + 3) % len(letters)] for i in range(len(letters))}
+# Create varialbe ttest for encrypted test message
+ttest = 'F Zljb ql Yrov zXbpXo, klq ql moXfpb efj.'
+transform_message(ttest, decoder)
+print(transform_message(ttest, decoder))
