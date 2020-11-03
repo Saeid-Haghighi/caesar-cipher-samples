@@ -1,0 +1,63 @@
+#Creating New Custom Python Data Types With Classes
+#Object-Oriented Programming  aka OOP
+"""
+Describes a style of programming and a class of programming lanquages. But since there
+are many aspects that help to define OOP actually is, different languages support, require, or
+embrace OOP to different degrees.
+- Calling methods on objects to activate some desired functionality.
+- Providing support for defining new custom data types(classes) with associated functions(methods)
+"""
+"""
+Everything is an object
+We have noted that everything in Python is an object, with an associated namespace.
+We can list the names of the items in that namespace with the built-in function dir(),
+and we can see documentation about what is defined in that namespace with the function help()
+"""
+
+"""
+Even when we call a built-in function or operation, such as 'len' or '+', what we are really doing is calling a method
+on the object that is passed to one of those functions. For example, both a list and a dict have a 
+method named '__len__', and when we compute the length of a list or dict using the built-in function 'len',
+what is really called underneath is the '__len__' method associated with that object. As an example , let 'my_list'
+be the list:"""
+
+my_list = [1,2,3]
+len(my_list)     # returns 3
+my_list.__len__() # also returns 3
+
+2 + 3 # returns 5
+(2).__add__(3) # also returns 5
+
+'abc'.__add__('def') # also returns 'abcdef'
+
+"""
+Python provides excellent support for defining new classes of objects.
+"""
+#Bundling Data and Methods Using Classes to Create New Data Types
+class Pizza:
+    """Class to construct pizza pies"""
+
+    def __init__(self, size, toppings=None):
+        """Build a pizza of the specified size and set of toppings"""
+        self.size = size
+        self.toppings = set()
+        if toppings is not None:
+            for topping in toppings:
+                self.toppings.add(topping)
+
+    def price(self):
+        """Calculate the price based on size of toppings"""
+        base_price = {'Small':10.0, 'Medium':12.0, 'Large':14.0}
+        p = base_price[self.size]
+        for topping in self.toppings:
+            self.toppings.add(topping)
+            p += 0.50
+        return p
+
+my_pizza = Pizza('Large', {'Garlic', 'Pepperoni'})
+your_pizza = Pizza('Medium', {'Onions', 'Peppers', 'Olives'})
+print(type(my_pizza))
+print(type(your_pizza))
+print(my_pizza.price())
+print(your_pizza.price())
+
